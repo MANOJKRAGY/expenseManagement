@@ -24,4 +24,6 @@ public class ControllerAdvice {
         ExceptionResponseDto exceptionResponseDto = new ExceptionResponseDto(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         return new ResponseEntity<>(exceptionResponseDto,HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 }

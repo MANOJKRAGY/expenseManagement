@@ -4,7 +4,9 @@ import com.example.expensemanagement.dto.ExpenseRequestDto;
 import com.example.expensemanagement.dto.ExpenseResponseDto;
 import com.example.expensemanagement.exception.ExpenseIdNotFound;
 import com.example.expensemanagement.exception.ExpenseNotSavedException;
+import com.example.expensemanagement.models.BaseLocation;
 import com.example.expensemanagement.models.Expense;
+import com.example.expensemanagement.models.ExpenseCategory;
 import com.example.expensemanagement.service.IExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -52,9 +54,20 @@ public class ExpenseController {
 
     private ExpenseResponseDto toDto(Expense expense){
         ExpenseResponseDto expenseResponseDto = new ExpenseResponseDto();
-        expenseResponseDto.setItemName(expense.getExpenseName());
-        expenseResponseDto.setDescription(expense.getDescription());
-        expenseResponseDto.setUserId(expense.getUserId());
+        expenseResponseDto.setId(expense.getId());
+        expenseResponseDto.setExpensePurpose(expense.getExpensepurpose());
+        expenseResponseDto.setExpenseCode(expense.getExpenseCode());
+        expenseResponseDto.setEmployeeName(expense.getEmployeeName());
+        expenseResponseDto.setEmployeeId(expense.getEmployeeId());
+        expenseResponseDto.setBaseLocation(String.valueOf(expense.getBaseLocation()));
+        expenseResponseDto.setExpensePeriod(expense.getExpensePeriod());
+        expenseResponseDto.setExpenseStartDate(expense.getExpenseStartDate());
+        expenseResponseDto.setExpenseEndDate(expense.getExpenseEndDate());
+        expenseResponseDto.setExpenseSubmissionDate(expense.getExpenseSubmissionDate());
+        expenseResponseDto.setReportingManagerId(expense.getReportingManagerId());
+        expenseResponseDto.setProjectId(expense.getProjectId());
+        long expenseCategoryId = expense.getExpenseCategory().getId();
+        expenseResponseDto.setExpenseCategoryId(expenseCategoryId);
         return expenseResponseDto;
     }
 

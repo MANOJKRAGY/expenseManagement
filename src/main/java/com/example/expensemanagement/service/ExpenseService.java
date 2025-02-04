@@ -1,6 +1,7 @@
 package com.example.expensemanagement.service;
 
 import com.example.expensemanagement.dto.ExpenseRequestDto;
+import com.example.expensemanagement.models.BaseLocation;
 import com.example.expensemanagement.models.Expense;
 import com.example.expensemanagement.models.ExpenseCategory;
 import com.example.expensemanagement.repository.ExpenseCategoryRepository;
@@ -23,9 +24,17 @@ public class ExpenseService implements IExpenseService{
     @Override
     public Expense createExpense(ExpenseRequestDto expenseRequestDto) {
         Expense expense = new Expense();
-        expense.setExpenseName(expenseRequestDto.getExpenseName());
-        expense.setDescription(expenseRequestDto.getDescription());
-        expense.setUserId(expenseRequestDto.getUserId());
+        expense.setExpensepurpose(expenseRequestDto.getExpensePurpose());
+        expense.setExpenseCode(expenseRequestDto.getExpenseCode());
+        expense.setEmployeeName(expenseRequestDto.getEmployeeName());
+        expense.setEmployeeId(expenseRequestDto.getEmployeeId());
+        expense.setBaseLocation(BaseLocation.valueOf(expenseRequestDto.getBaseLocation()));
+        expense.setExpensePeriod(expenseRequestDto.getExpensePeriod());
+        expense.setExpenseStartDate(expenseRequestDto.getExpenseStartDate());
+        expense.setExpenseEndDate(expenseRequestDto.getExpenseEndDate());
+        expense.setExpenseSubmissionDate(expenseRequestDto.getExpenseSubmissionDate());
+        expense.setReportingManagerId(expenseRequestDto.getReportingManagerId());
+        expense.setProjectId(expenseRequestDto.getProjectId());
         ExpenseCategory expenseCategory = expenseCategoryRepository.findById(expenseRequestDto.getExpenseCategoryId()).get();
         expense.setExpenseCategory(expenseCategory);
         return expenseRepository.save(expense);
